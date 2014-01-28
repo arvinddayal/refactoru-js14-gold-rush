@@ -1,0 +1,10 @@
+#map {
+	width: 100%;
+	z-index: 1;
+}
+
+#marker {
+	width: 30px;
+	position: absolute;
+	z-index: 10;
+}
