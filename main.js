@@ -1,5 +1,7 @@
 $(function() {
 
+
+// gets x/y position and assigns that to marker/text box upon click
 	$('#map').click(function(e) {
 		var evt = e ? e:window.event;
 		var clickX=0;
@@ -8,12 +10,14 @@ $(function() {
 			clickX = evt.pageX;
 			clickY = evt.pageY;
 		}
-		var newImage = $('<img id="marker" src="marker.png">').css({"left": clickX-16, "top": clickY-4});
+		prompt("Ahoy matey!  Scribe ye notes 'bout the ghastly Kraken!");
+		var newImage = $('<img class="marker" src="marker.png">').css({"left": clickX-16, "top": clickY-4});
 		$('body').prepend(newImage);
-		console.log(clickX, clickY);
 	});
 
-	$(document).on("click","#marker",function() {
+
+// removes markers when clicked
+	$(document).on("click",".marker",function() {
 	$(this).remove();
 	});
 

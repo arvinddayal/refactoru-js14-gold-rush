@@ -1,14 +1,28 @@
 #map {
-	width: 100%;
+	width: 700px;
 	z-index: 1;
+	border: 5px solid #000;
 }
 
-#marker {
+.marker {
 	width: 30px;
 	position: absolute;
 	z-index: 10;
-/*	left: 564px;
-	top: 490px;*/
 }
 
-/*564x 490y*/
+h1 {
+	text-align: center;
+	color: #F18D05;
+	display: inline-block;
+}
+
+body {
+	background-color: #494848;
+	text-align: center;
+}
+
+.skull {
+	width: 50px;
+	display: inline-block;
+}
+
