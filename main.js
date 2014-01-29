@@ -1,40 +1,60 @@
 $(function() {
 
 
-// gets x/y position and assigns that to marker/text box upon click
-	$('#map').click(function(e) {
-		var evt = e ? e:window.event;
+// gets x/y position
+	var getPos = function(e){
 		var clickX=0;
 		var clickY=0;
-		if (evt.pageX || evt.pageY) {
-			clickX = evt.pageX;
-			clickY = evt.pageY;
+		if (e.pageX || e.pageY) {
+			clickX = e.pageX;
+			clickY = e.pageY;
 		}
-		var newImage = $('<img class="marker" src="marker.png">').css({"left": clickX-16, "top": clickY-4});
-		var infoPrompt = prompt("Ahoy matey!  Scribe ye notes 'bout the ghastly Kraken!");
-		var textBox = $('<div class="info-box">').text(infoPrompt).css({"left": clickX+15, "top": clickY-5});
-		$('.main').append(textBox);
-		$('.main').append(newImage);
+		return {
+			x: clickX,
+			y: clickY,
+		};
+	};
 
+
+	// creates div with img and text box, gets x/y from getPos
+	var createMark = function(pos) {
+		var infoPrompt = prompt("Ahoy matey!  Scribe ye notes 'bout the ghastly Kraken!");
+		var textBox = $('<div class="info-box">').text(infoPrompt);
+		var newImage = $('<img class="marker" src="marker.png">');
+		var newMark = $('<div class="new-mark">').css({"left": pos.x-95, "top": pos.y-4}).append(newImage).append(textBox);
+		return newMark;
+	};
+
+
+	// places div on click
+	var makeMark = $('#map').click(function(e) {
+		var pos = getPos(e);
+		$('.main').append(createMark(pos));
 	});
+
+
+
+
+
+		
+
 
 
 
 	// changes info-box display to visible
 	$(document).on("mouseenter", '.marker', function() {
-		$(this).prev('.info-box').toggle('display');
+		$(this).next('.info-box').toggle('display');
 	});
+
 	// changes info-box display to none
 	$(document).on("mouseleave", '.marker', function() {
-		$(this).prev('.info-box').toggle('display');
-	});	
+		$(this).next('.info-box').toggle('display');
+	});
 
-
-
-// removes markers/text box when clicked
+	// removes markers/text box when clicked
 	$(document).on("click",'.marker',function() {
-	$(this).prev('.info-box').remove();
-	$(this).remove();
+		$(this).next('.info-box').remove();
+		$(this).remove();
 	});
 
 
