@@ -26,3 +26,13 @@ body {
 	display: inline-block;
 }
 
+.info-box {
+	opacity: .8;
+	width: 150px;
+	height: 75px;
+	position: absolute;
+	background-color: #FFF;
+	border: 3px solid #494848;
+	z-index: 9;
+	display: none;
+}

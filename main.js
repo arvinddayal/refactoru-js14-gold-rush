@@ -10,14 +10,30 @@ $(function() {
 			clickX = evt.pageX;
 			clickY = evt.pageY;
 		}
-		prompt("Ahoy matey!  Scribe ye notes 'bout the ghastly Kraken!");
 		var newImage = $('<img class="marker" src="marker.png">').css({"left": clickX-16, "top": clickY-4});
-		$('body').prepend(newImage);
+		var infoPrompt = prompt("Ahoy matey!  Scribe ye notes 'bout the ghastly Kraken!");
+		var textBox = $('<div class="info-box">').text(infoPrompt).css({"left": clickX+15, "top": clickY-5});
+		$('.main').append(textBox);
+		$('.main').append(newImage);
+
 	});
 
 
-// removes markers when clicked
-	$(document).on("click",".marker",function() {
+
+	// changes info-box display to visible
+	$(document).on("mouseenter", '.marker', function() {
+		$(this).prev('.info-box').toggle('display');
+	});
+	// changes info-box display to none
+	$(document).on("mouseleave", '.marker', function() {
+		$(this).prev('.info-box').toggle('display');
+	});	
+
+
+
+// removes markers/text box when clicked
+	$(document).on("click",'.marker',function() {
+	$(this).prev('.info-box').remove();
 	$(this).remove();
 	});
 
